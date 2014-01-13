@@ -37,41 +37,48 @@ public class Test {
         // "Се­рфинг сайтов"
         HtmlPage page = webClient.getPage(host);
         HtmlElement link = page.getFirstByXPath("//a[text()='Се­рфинг сайтов']");
+
         page = click(link);
         List<HtmlElement> links = (List<HtmlElement>) page.getByXPath("//a[contains(@href, 'viev_serf.php?ad=')]");
-        page = click( links.iterator().next());
-        
-        FrameWindow frame = page.getFrameByName("frminfo");
-        for (int i = 0; i < 6; i++) {
-            
-//            HtmlPage framePage = frame.g;
-            HtmlPage frmPage = (HtmlPage) frame.getEnclosedPage();
-            System.out.println(frmPage.getWebResponse().getContentAsString());
-         
-            
-            HtmlImage image = frmPage.<HtmlImage>getFirstByXPath(" //img[contains(@src, 'vcapt.php')]");
-            if(image != null) {
-                
-//                 image = page.<HtmlImage>getFirstByXPath("//img[@src='blah']");
-                File imageFile = new File("d:\\img.png");
-                System.err.println("Saving image...");
-//                image.
-                image.saveAs(imageFile);
-                
-                break;
-                
-            }
-         Thread.sleep(5000);
-            // page1.g
-        }
+        for (HtmlElement surfLink : links) {
+            HtmlPage npage = click(surfLink);
 
+            FrameWindow frame = npage.getFrameByName("frminfo");
+            for (int i = 0; i < 10; i++) {
+
+                // HtmlPage framePage = frame.g;
+                HtmlPage frmPage = (HtmlPage) frame.getEnclosedPage();
+                System.out.println(frmPage.getWebResponse().getContentAsString());
+
+                HtmlImage image = frmPage.<HtmlImage> getFirstByXPath(" //img[contains(@src, 'vcapt.php')]");
+                if (image != null) {
+
+                    // image =
+                    // page.<HtmlImage>getFirstByXPath("//img[@src='blah']");
+                    // File imageFile = new File("d:\\img.png");
+                    // System.err.println("Saving image...");
+                    // image.
+                    // image.saveAs(imageFile);
+                    HtmlElement okClick = frmPage.getFirstByXPath("//a[contains(@href, 'vlss.php?view=ok')]");
+                    if (okClick != null) {
+                        click(okClick);
+                        Thread.sleep(1000);
+                    }
+                    // System.out.println(okPage.getWebResponse().getContentAsString());
+                    break;
+
+                }
+                Thread.sleep(5000);
+                // page1.g
+            }
+        }
     }
 
     private HtmlPage click(HtmlElement element) throws IOException {
         element.mouseMove();
         element.mouseDown();
         HtmlPage page = element.click();
-//        System.out.println(page.getWebResponse().getContentAsString());
+        // System.out.println(page.getWebResponse().getContentAsString());
         // element.mouseUp();
         // Page page = element.mouseOut();
         // System.out.println(page.getWebResponse().getContentAsString());
