@@ -1,0 +1,1 @@
+cap.exe /ini my.ini

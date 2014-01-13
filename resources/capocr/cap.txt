@@ -1,0 +1,24 @@
+------------------------------------------------------------------------------
+Cap.exe - Cap OCR System (recognize, checker & other function)
+special for USDownloader (by Dimoniusis) forum: http://forum.ru-board.com
+
+Licence - Freeware
+If used in your designs - this file without changes required to incorporate.
+
+------------------------------------------------------------------------------
+program uses
+convert.exe - by (c) ImageMagick Studio (http://www.imagemagick.org)
+------------------------------------------------------------------------------
+program uses
+unrar (rar.exe) by Alexander L. Roshal
+------------------------------------------------------------------------------
+
+
+Programming by Kis's
+
+Official site & Documentation: http://users.altupdate.ru/cap/
+
+
+
+
+------------------------------------------------------------------------------
